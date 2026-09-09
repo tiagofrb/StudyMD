@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Protótipo de biblioteca de estudos organizada por disciplinas.">
+  <title>Estudos — Protótipo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar" aria-label="Navegação principal">
+    <div class="brand">
+      <div class="brand-mark">E</div>
+      <div>
+        <strong>Estudos</strong>
+        <span>Biblioteca pessoal</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-item active" href="#disciplinas">▦ <span>Disciplinas</span></a>
+      <a class="nav-item" href="#recentes">◷ <span>Recentes</span></a>
+      <a class="nav-item" href="#favoritos">☆ <span>Favoritos</span></a>
+    </nav>
+
+    <div class="sidebar-section">
+      <div class="section-label">Bibliotecas</div>
+      <button class="collection"><span class="dot"></span> Minha biblioteca <b>24</b></button>
+      <button class="collection"><span class="dot muted"></span> Compartilhadas <b>8</b></button>
+    </div>
+
+    <div class="sidebar-bottom">
+      <button class="settings">⚙ <span>Configurações</span></button>
+      <div class="sync-status"><span class="status-dot"></span> Sincronizado com GitHub</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="breadcrumbs">Biblioteca <span>/</span> Disciplinas</div>
+      <div class="top-actions">
+        <button class="icon-btn" title="Atalho de teclado">⌘ K</button>
+        <button class="avatar" aria-label="Perfil">T</button>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">BIBLIOTECA DE ESTUDOS</p>
+          <h1>Disciplinas</h1>
+          <p class="subtitle">Encontre suas matérias e navegue pelo conteúdo sem depender do semestre.</p>
+        </div>
+        <button class="primary" id="newDiscipline">＋ Nova disciplina</button>
+      </div>
+
+      <div class="search-row">
+        <label class="search">
+          <span>⌕</span>
+          <input id="search" type="search" placeholder="Buscar disciplina, professor, código ou assunto..." autocomplete="off">
+          <kbd>/</kbd>
+        </label>
+        <button class="filter-btn" id="filterBtn">☷ Filtros <span>2</span></button>
+      </div>
+
+      <div class="toolbar">
+        <div class="result-count"><strong id="count">8</strong> disciplinas</div>
+        <div class="view-controls">
+          <button class="view active" data-view="grid" aria-label="Visualização em grade">▦</button>
+          <button class="view" data-view="list" aria-label="Visualização em lista">☷</button>
+          <select id="sort" aria-label="Ordenar">
+            <option value="name">Nome</option>
+            <option value="recent">Mais recentes</option>
+            <option value="items">Mais conteúdo</option>
+          </select>
+        </div>
+      </div>
+
+      <section id="disciplineGrid" class="discipline-grid" aria-live="polite"></section>
+      <div id="empty" class="empty hidden">
+        <div>⌕</div>
+        <h2>Nenhuma disciplina encontrada</h2>
+        <p>Tente outro termo de busca.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="newDialog">
+    <form method="dialog" id="newForm">
+      <button class="dialog-close" value="cancel" aria-label="Fechar">×</button>
+      <p class="eyebrow">NOVA DISCIPLINA</p>
+      <h2>Adicionar matéria</h2>
+      <label>Nome<input name="name" required placeholder="Ex.: Cálculo I"></label>
+      <label>Código <span class="optional">(opcional)</span><input name="code" placeholder="Ex.: FIS101"></label>
+      <div class="dialog-actions">
+        <button class="secondary" value="cancel">Cancelar</button>
+        <button class="primary" value="default">Adicionar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
