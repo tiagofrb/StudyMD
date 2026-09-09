@@ -1,3 +1,27 @@
+
+const themeToggle = document.querySelector("#themeToggle");
+const themeIcon = themeToggle.querySelector(".theme-icon");
+const themeLabel = themeToggle.querySelector(".theme-label");
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  const dark = theme === "dark";
+  themeIcon.textContent = dark ? "☀" : "☾";
+  themeLabel.textContent = dark ? "Modo claro" : "Modo escuro";
+  themeToggle.setAttribute("aria-label", dark ? "Ativar modo claro" : "Ativar modo escuro");
+  themeToggle.title = dark ? "Ativar modo claro" : "Ativar modo escuro";
+}
+
+const savedTheme = localStorage.getItem("estudos-theme");
+const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+applyTheme(savedTheme || preferredTheme);
+
+themeToggle.addEventListener("click", () => {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  localStorage.setItem("estudos-theme", nextTheme);
+  applyTheme(nextTheme);
+});
+
 const disciplines = [
   { name:"Cálculo I", code:"MAT101", items:42, progress:72, favorite:true },
   { name:"Álgebra Linear", code:"MAT203", items:31, progress:48, favorite:false },
